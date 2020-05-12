@@ -25,11 +25,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.redAccent
       ),
-      home:  FacePage(),
+      home:  SplashScreen(),
       routes: {
         Registration.id: (context) => Registration(),
         Login.id: (context) => Login(),Imformation.id: (context) => Imformation(),
-
         Chat.id: (context) => Chat(),
         Gender.id:(context)=>Gender(),
         SplashScreen.id: (context) => SplashScreen(),

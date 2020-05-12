@@ -4,6 +4,7 @@ import 'package:chat_app_example/chat/all_users_screen.dart';
 import 'package:chat_app_example/chat/home_page.dart';
 import 'package:chat_app_example/chat/startingChat.dart';
 import 'package:chat_app_example/inbox.dart';
+import 'package:chat_app_example/services/authservice.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -80,6 +81,7 @@ class MatchCard {
   }
 }
 
+
 class MyHomePage extends StatefulWidget {
   static const String id = "Cards";
 
@@ -140,7 +142,9 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: IconButton(
           icon: Icon(Icons.menu),
           color: Colors.redAccent,
-          onPressed: () {},
+          onPressed: () {
+            AuthService().signOut();
+          },
         ),
         actions: <Widget>[
           IconButton(
@@ -288,31 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
       {"title": "sea Food", "pic": "assets/images/a9.jpeg"},
       {"title": "Fast Foods", "pic": "assets/images/a11.jpeg"},
       {"title": "Shushi", "pic": "assets/images/a14.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica1.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica2.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica3.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica4.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica5.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica6.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica7.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica8.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica9.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica10.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica11.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica12.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica13.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica14.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica14.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/a18.jpeg1"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica18.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/a17.jpeg"},
       {"title": "GYM Freak Food", "pic": "assets/images/a15.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica16.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica18.jpeg"},
-      {"title": "GYM Freak Food", "pic": "assets/images/Amica19.jpeg"},
-
-
-
     ];
 
     List<MatchCard> cards = new List();
@@ -321,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     List<Widget> cardList = new List();
 
-    for (int x = 0; x < data.length; x++) {
+    for (int x = 0; x < 10; x++) {
       cardList.add(Positioned(
           top: 40,
           child: Draggable(
@@ -334,7 +314,7 @@ class _MyHomePageState extends State<MyHomePage> {
               _removeCard(x);
             },
             childWhenDragging: Container(
-              child: Text("Swiped",style: TextStyle(fontFamily: "Poppins2",fontSize: 30,color: Colors.red),),
+              child: Text("Abhi"),
             ),
             feedback: Card(
               elevation: 0,

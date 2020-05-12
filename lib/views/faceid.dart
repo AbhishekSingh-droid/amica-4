@@ -69,7 +69,7 @@ class _FacePageState extends State<FacePage> {
 
       body: isLoading
           ? Center(child: CircularProgressIndicator())
-          : (_imageFile == null)
+          : (_imageFile == null )
           ? Column(
         children: <Widget>[
           SizedBox(
@@ -138,69 +138,73 @@ class _FacePageState extends State<FacePage> {
       )
           : Scaffold(
         appBar: AppBar(elevation: 0,
-          title: IconButton(
+          leading: IconButton(
             icon: Icon(Icons.keyboard_backspace),
             color: Colors.red,
             onPressed: () {},
           ),
           backgroundColor: Colors.white,
         ),
-        body: Builder(
+        body: ListView(
+          children: <Widget>[
+             Builder(
 
-          builder: (context) => Container(
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: height/25,
-                ),
-                Padding(
-                  padding: EdgeInsets.only( right: width/3),
-                  child: Text(
-                    "Confirm Selfie",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0,
-                      fontFamily: 'Poppins',
-                      fontSize: 28,
+              builder: (context) => Container(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: height/25,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: height/16,
-                ),
-                Container(height: 100,width: 100,
-                    child: CustomPaint(
-                      painter: FacePainter(_image, _faces),
+                    Padding(
+                      padding: EdgeInsets.only( right: width/3),
+                      child: Text(
+                        "Confirm Selfie",
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0,
+                          fontFamily: 'Poppins',
+                          fontSize: 28,
+                        ),
+                      ),
                     ),
-                  ),
-                SizedBox(
-                  height: height/8,
-                ),
-                Material(
-                  elevation: 0,
-                  child: MaterialButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context,Upload.id);
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
+                    SizedBox(
+                      height: height/16,
                     ),
-                    height: height/12,minWidth: width/1.3,
-                    child: Text(
-                      'Confirm',
-                      style: TextStyle(
-                          fontFamily: "Poppins",
-                          color: Colors.white,
-                          fontSize: height/35),
+                    Container(height: _image.height.toDouble(),width: _image.width.toDouble(),
+                      child: CustomPaint(
+                        painter: FacePainter(_image, _faces),
+                      ),
                     ),
-                    splashColor: Colors.redAccent,
-                    color: Colors.redAccent,
-                  ),
+                    SizedBox(
+                      height: height/8,
+                    ),
+                    Material(
+                      elevation: 0,
+                      child: MaterialButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context,Upload.id);
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        height: height/12,minWidth: width/1.3,
+                        child: Text(
+                          'Confirm',
+                          style: TextStyle(
+                              fontFamily: "Poppins",
+                              color: Colors.white,
+                              fontSize: height/35),
+                        ),
+                        splashColor: Colors.redAccent,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       )
 
