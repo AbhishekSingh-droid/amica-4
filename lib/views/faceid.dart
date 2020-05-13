@@ -36,10 +36,10 @@ class _FacePageState extends State<FacePage> {
     });
     final image = FirebaseVisionImage.fromFile(imageFile);
     final faceDetector = FirebaseVision.instance.faceDetector(
-      FaceDetectorOptions(
-        mode: FaceDetectorMode.fast,
-        enableLandmarks: true
-      )
+        FaceDetectorOptions(
+            mode: FaceDetectorMode.fast,
+            enableLandmarks: true
+        )
     );
     List<Face> faces = await faceDetector.processImage(image);
     if (mounted) {
@@ -67,9 +67,9 @@ class _FacePageState extends State<FacePage> {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : (_imageFile == null )
-          ? ListView(
+            ? Center(child: CircularProgressIndicator())
+            : (_imageFile == null )
+            ? ListView(
           children: <Widget>[
             Padding(
               padding:  EdgeInsets.all(height/30),
@@ -137,93 +137,96 @@ class _FacePageState extends State<FacePage> {
             )
           ],
         )
-          : Scaffold(
-        appBar: AppBar(elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.keyboard_backspace),
-            color: Colors.red,
-            onPressed: () {},
+            : Scaffold(
+          appBar: AppBar(elevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.keyboard_backspace),
+              color: Colors.red,
+              onPressed: () {},
+            ),
+            backgroundColor: Colors.white,
           ),
-          backgroundColor: Colors.white,
-        ),
-        body: ListView(
-          children: <Widget>[
-             Builder(
-               builder: (context) => Container(
-                child: Padding(
-                  padding:  EdgeInsets.all(height/30),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: height/25,
-                      ),
-                      Align(alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Confirm Selfie",
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0,
-                            fontFamily: 'Poppins',
-                            fontSize: height/27,
+          body: ListView(
+            children: <Widget>[
+              Builder(
+                builder: (context) => Container(
+                  height: _image.height.toDouble(),
+                  width: _image.height.toDouble(),
+                  child: Padding(
+                    padding:  EdgeInsets.all(height/30),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: height/25,
+                        ),
+                        Align(alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Confirm Selfie",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0,
+                              fontFamily: 'Poppins',
+                              fontSize: height/27,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height/16,
-                      ),
-                       CircleAvatar(radius: height/6,
-                         child: ClipOval(
-                           child: FittedBox(
-                            child: SizedBox(
-                              width: _image.width.toDouble(),
-                              height: _image.height.toDouble(),
-                              child: CustomPaint(
-                                painter: FacePainter(_image, _faces),
+                        SizedBox(
+                          height: height/16,
+                        ),
+                        CircleAvatar(radius: height/6,
+                          child: ClipOval(
+                            child: FittedBox(
+                              child: SizedBox(
+                                width: _image.width.toDouble(),
+                                height: _image.height.toDouble(),
+                                child: CustomPaint(
+                                  painter: FacePainter(_image, _faces),
+                                ),
                               ),
                             ),
-                      ),
-                         ),
-                       ),
-                      SizedBox(
-                        height: height/8,
-                      ),
-                      Material(
-                        elevation: 0,
-                        child: MaterialButton(
-                          onPressed: () {
-
-                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return VoiceUpload();}), ModalRoute.withName('/'));
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
                           ),
-                          height: height/12,minWidth: width/1.3,
-                          child: Text(
-                            'Confirm',
-                            style: TextStyle(
-                                fontFamily: "Poppins",
-                                color: Colors.white,
-                                fontSize: height/35),
-                          ),
-                          splashColor: Colors.redAccent,
-                          color: Colors.redAccent,
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: height/8,
+                        ),
+                        Material(
+                          elevation: 0,
+                          child: MaterialButton(
+                            onPressed: () {
+                              if(FacePainter.flag==0)
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return VoiceUpload();}), ModalRoute.withName('/'));
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            height: height/12,minWidth: width/1.3,
+                            child: Text(
+                              'Confirm',
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  color: Colors.white,
+                                  fontSize: height/35),
+                            ),
+                            splashColor: Colors.redAccent,
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      )
+            ],
+          ),
+        )
 
     );
   }
 }
 
 class FacePainter extends CustomPainter {
+  static  var flag=0;
   final ui.Image image;
   final List<Face> faces;
   final List<Rect> rects = [];
@@ -241,12 +244,12 @@ class FacePainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5.0
       ..color = Colors.blue;
-    var flag=1;
+
 
     canvas.drawImage(image, Offset.zero, Paint());
     for (var i = 0; i < faces.length; i++) {
       canvas.drawRect(rects[i], paint);
-      flag=0;
+      FacePainter.flag=0;
       print(rects);
       print("$flag");
     }
