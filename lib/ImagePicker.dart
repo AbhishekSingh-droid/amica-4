@@ -357,7 +357,7 @@ class _UploadState extends State<Upload> {
   Future chooseFile3() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
-        _image1 = image;
+        _image3 = image;
         uploadFile3();
 
       });
@@ -366,7 +366,7 @@ class _UploadState extends State<Upload> {
   Future chooseFile4() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
-        _image2 = image;
+        _image4= image;
         uploadFile4();
 
       });
@@ -375,7 +375,7 @@ class _UploadState extends State<Upload> {
   Future chooseFile5() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
-        _image3 = image;
+        _image5= image;
         uploadFile5();
 
       });
@@ -384,7 +384,7 @@ class _UploadState extends State<Upload> {
   Future chooseFile6() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
-        _image4 = image;
+        _image6 = image;
         uploadFile6();
 
       });
@@ -393,7 +393,7 @@ class _UploadState extends State<Upload> {
   Future chooseFile7() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
-        _image6 = image;
+        _image7= image;
         uploadFile7();
 
       });
@@ -402,7 +402,7 @@ class _UploadState extends State<Upload> {
   Future chooseFile8() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
-        _image7 = image;
+        _image8 = image;
         uploadFile8();
 
       });
