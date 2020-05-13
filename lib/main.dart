@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Amica',
       theme: ThemeData(
-        primaryColor: Colors.redAccent
+        primaryColor: Colors.redAccent,
       ),
-      home:  SplashScreen(),
+      home:  VoiceUpload(),
       routes: {
         Registration.id: (context) => Registration(),
         Login.id: (context) => Login(),Imformation.id: (context) => Imformation(),

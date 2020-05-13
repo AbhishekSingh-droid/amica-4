@@ -377,9 +377,6 @@ class _LoginPageState extends State<LoginPage> {
               Column(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(height/18),
-                  ),
-                  Padding(
                     padding: EdgeInsets.symmetric(vertical: height/15, horizontal: width/13),
                     child: Image.asset('assets/images/logo.png'),
                   ),
@@ -438,6 +435,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.redAccent,
                     ),
                   ),
+                  SizedBox(height: height/40,),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Row(
@@ -448,7 +446,7 @@ class _LoginPageState extends State<LoginPage> {
                           backgroundColor: Colors.red,heroTag: "insta",
                           child: Image.asset('assets/images/ig.png'),
                           onPressed: () {},
-                        ),SizedBox(width: width/40,),
+                        ),SizedBox(width: width/30,),
                         FloatingActionButton(heroTag: "facebook",elevation: 0,
                           backgroundColor: Colors.white,
                           child: Image.asset(
@@ -466,7 +464,7 @@ class _LoginPageState extends State<LoginPage> {
                             )
                             ;
                           },
-                        ),SizedBox(width: width/40,),
+                        ),SizedBox(width: width/30,),
                         FloatingActionButton(heroTag: "google",elevation: 0,
                           backgroundColor: Colors.white,
                           child: Image.asset('assets/images/gg.png'),

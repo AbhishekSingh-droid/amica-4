@@ -646,7 +646,9 @@ class _VoiceUploadState extends State<VoiceUpload> {
         leading: IconButton(
           icon: Icon(Icons.keyboard_backspace),
           color: Colors.red,
-          onPressed: () {},
+          onPressed: () {
+
+        },
         ),
         backgroundColor: Colors.white,
       ),
@@ -678,7 +680,9 @@ class _VoiceUploadState extends State<VoiceUpload> {
                       child: Image(
                         image: AssetImage('assets/images/mic.png'),
                       ),
-                      onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return Voice();}), ModalRoute.withName('/'));
+                    },),
                 ),
               ),
               SizedBox(height: height/20,),
@@ -731,85 +735,93 @@ class _VoiceState extends State<Voice> {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(elevation: 0,
-          title: IconButton(
+          leading: IconButton(
             icon: Icon(Icons.keyboard_backspace),
             color: Colors.red,
             onPressed: () {},
           ),
           backgroundColor: Colors.white,
         ),
-        body: Builder(
+        body: ListView(
+          children: <Widget>[
+            Builder(
 
-          builder: (context) => Container(
-            child: Column(
-                children: <Widget>[
+              builder: (context) => Container(
+                child: Padding(
+                  padding: EdgeInsets.all(height/30),
+                  child: Column(
+                      children: <Widget>[
 
-                  SizedBox(
-                    height: height/20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only( right: width/3),
-                    child: Text(
-                      "Voice Description",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0,
-                        fontFamily: 'Poppins',
-                        fontSize: 28,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height/16,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(height: height/4,width: width/1.4,
-                      child: FlatButton(
-                          child: Image(
-                            image: AssetImage('assets/images/tick.png'),
+                        SizedBox(
+                          height: height/20,
+                        ),
+                        Align(alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Voice Description",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0,
+                              fontFamily: 'Poppins',
+                              fontSize: 28,
+                            ),
                           ),
-                          onPressed: () {}),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height/16,
-                  ),
-                  Text(
-                    "Audio Uploaded!",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        letterSpacing: 0,
-                        fontFamily: 'Poppins1',
-                        color: Colors.black),
-                  ),
-                  SizedBox(
-                    height: height/8,
-                  ),
-                  Material(
-                    elevation: 0,
-                    child: MaterialButton(
-                      onPressed: () {
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      height: height/12,minWidth: width/1.3,
-                      child: Text(
-                        'Confirm',
-                        style: TextStyle(
-                            fontFamily: "Poppins",
-                            color: Colors.white,
-                            fontSize: height/35),
-                      ),
-                      splashColor: Colors.redAccent,
-                      color: Colors.redAccent,
-                    ),
-                  ),
-                ]),
-          ),
-        ));
+                        ),
+                        SizedBox(
+                          height: height/20,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(height: height/4,width: width/1.4,
+                            child: FlatButton(
+                                child: Image(
+                                  image: AssetImage('assets/images/tick.png'),
+                                ),
+                                onPressed: () {}),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height/20,
+                        ),
+                        Text(
+                          "Audio Uploaded!",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              letterSpacing: 0,
+                              fontFamily: 'Poppins1',
+                              color: Colors.black),
+                        ),
+                        SizedBox(
+                          height: height/12,
+                        ),
+                        Material(
+                          elevation: 0,
+                          child: MaterialButton(
+                            onPressed: () {
+                              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {return TextDesc();}), ModalRoute.withName('/'));
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            height: height/12,minWidth: width/1.3,
+                            child: Text(
+                              'Confirm',
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  color: Colors.white,
+                                  fontSize: height/35),
+                            ),
+                            splashColor: Colors.redAccent,
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            )
+          ],
+        )
+    );
   }
 }
 
@@ -832,71 +844,77 @@ class _TextDescState extends State<TextDesc> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: Builder(
+        body: ListView(
+          children: <Widget>[
+            Builder(
 
-          builder: (context) => Container(
-            child: Column(
-                children: <Widget>[
-
-                  SizedBox(
-                    height: height/8,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only( right: width/3),
-                    child: Text(
-                      "Text Description",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0,
-                        fontFamily: 'Poppins',
-                        fontSize: 28,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height/16,
-                  ),
-                  Theme(
-                    data: new ThemeData(
-                      primaryColor: Colors.redAccent,
-                    ),
-                    child: TextField(
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide:  BorderSide(color: Colors.redAccent)
+              builder: (context) => Container(
+                child: Padding(
+                  padding: EdgeInsets.all(height/30),
+                  child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: height/20,
                         ),
-                        labelText: 'click here',
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height/16,
-                  ),
-                  Material(
-                    elevation: 0,
-                    child: MaterialButton(
-                      onPressed: () {
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      height: height/12,minWidth: width/1.3,
-                      child: Text(
-                        'Confirm',
-                        style: TextStyle(
-                            fontFamily: "Poppins",
-                            color: Colors.white,
-                            fontSize: height/35),
-                      ),
-                      splashColor: Colors.redAccent,
-                      color: Colors.redAccent,
-                    ),
-                  ),
-                ]),
-          ),
-        ));
+                        Text(
+                          "Text Description",
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0,
+                            fontFamily: 'Poppins',
+                            fontSize: height/27,
+                          ),
+                        ),
+                        SizedBox(
+                          height: height/20,
+                        ),
+                        Theme(
+                          data: new ThemeData(
+                            primaryColor: Colors.redAccent,
+                          ),
+                          child: Container(height: height/1.5,width: width/1.5,
+                            child: TextField(
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide:  BorderSide(color: Colors.redAccent)
+                                ),
+                                labelText: 'click here',
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height/16,
+                        ),
+                        Material(
+                          elevation: 0,
+                          child: MaterialButton(
+                            onPressed: () {
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            height: height/12,minWidth: width/1.3,
+                            child: Text(
+                              'Confirm',
+                              style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  color: Colors.white,
+                                  fontSize: height/35),
+                            ),
+                            splashColor: Colors.redAccent,
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                      ]),
+                ),
+              ),
+            )
+          ],
+        )
+    );
   }
 }
 

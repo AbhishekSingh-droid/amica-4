@@ -93,12 +93,8 @@ class _PhoneloginState extends State<Phonelogin> {
                             minWidth: 320,
                             child: Center(child: codeSent ? Text('Login'):Text('Continue')),
                             onPressed: () {
-                              codeSent ? AuthService().signInWithOTP(
-                                  smsCode, verificationId) : verifyPhone(
-                                  phoneNo);
-                            }
-
-    ))],
+                              codeSent ? AuthService1().signInWithOTP(smsCode, verificationId) : verifyPhone(phoneNo);
+                            }))],
                 )),
           ],
         ),
